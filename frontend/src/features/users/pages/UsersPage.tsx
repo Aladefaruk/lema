@@ -31,9 +31,9 @@ const UsersPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#fff] ">
+    <div className="min-h-screen bg-white">
       <div className="max-w-6xl mx-auto px-6 py-32">
-        <h1 className="text-[60px] leading-[72px] font-[500] text-[#181D27] mb-6">Users</h1>
+        <h1 className="text-6xl font-medium text-gray-900 mb-6">Users</h1>
         
         <UserTable users={users || []} onUserClick={handleUserClick} isLoading={usersLoading} />
         

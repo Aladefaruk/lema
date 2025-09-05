@@ -9,18 +9,18 @@ interface PostCardProps {
 
 const PostCard: React.FC<PostCardProps> = ({ post, onDelete }) => {
   return (
-    <div className="bg-white border-[1px] border-[#D5D7DA]  rounded-[8px] py-9 px-6 relative w-[270px] h-[293px]" style={{ boxShadow: "0px 2px 4px -2px rgba(10, 13, 18, 0.1)" }}>
+    <div className="bg-white border border-gray-300 rounded-lg py-9 px-6 relative w-[270px] h-[293px] shadow-sm">
       <button
         onClick={() => onDelete(post.id)}
-        className="absolute top-2 right-2  flex items-center justify-center w-[24px] h-[24px] rounded-[4px] hover:bg-[#FEF4F5]"
+        className="absolute top-2 right-2 flex items-center justify-center w-6 h-6 rounded hover:bg-red-50"
         title="Delete post"
       >
        <TrashIcon/>
       </button>
       
-      <div className="overflow-hidden h-[209px]">
-        <h3 className="text-[18px] font-[500] leading-[20px] text-[#535862] space-[20px] tracking-wide mb-3">{post.title}</h3>
-        <p className="text-[#535862] text-[14px] font-[400] leading-[20px] leading-relaxed ">{post.body.slice(0, 190)} { post?.body.length>190 &&"..."}</p>
+      <div className="overflow-hidden h-52">
+        <h3 className="text-lg font-medium text-gray-600 tracking-wide mb-3">{post.title}</h3>
+        <p className="text-gray-600 text-sm leading-relaxed">{post.body.slice(0, 190)}{post?.body.length > 190 && "..."}</p>
       </div>
     </div>
   );

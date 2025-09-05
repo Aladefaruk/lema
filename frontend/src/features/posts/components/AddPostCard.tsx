@@ -29,7 +29,7 @@ const AddPostCard: React.FC<AddPostCardProps> = ({ onClick }) => {
       <div className=" flex items-center justify-center mb-2">
        <PlusIcon/>
       </div>
-      <span className="text-[#717680] text-[14px] leading-[20px] font-[600]">New Post</span>
+      <span className="text-gray-500 text-sm font-semibold">New Post</span>
     </div>
   );
 };

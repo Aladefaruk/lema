@@ -22,7 +22,7 @@ const AddPostForm: React.FC<AddPostFormProps> = ({ onSubmit, onCancel, isLoading
 
   return (
     <div className='h-full'>
-      <h2 className="text-[36px] font-[500] text-[#181D27] mb-5">New Post</h2>
+      <h2 className="text-4xl font-medium text-gray-900 mb-5">New Post</h2>
       
       <form onSubmit={handleSubmit}>
         <FormInput
@@ -35,7 +35,7 @@ const AddPostForm: React.FC<AddPostFormProps> = ({ onSubmit, onCancel, isLoading
         />
         
         <div className="mb-8">
-          <label htmlFor="body" className="block text-[18px] font-[500] text-[#535862] mb-2">
+          <label htmlFor="body" className="block text-lg font-medium text-gray-600 mb-2">
             Post content
           </label>
           <textarea
@@ -44,7 +44,7 @@ const AddPostForm: React.FC<AddPostFormProps> = ({ onSubmit, onCancel, isLoading
             onChange={(e) => setBody(e.target.value)}
             placeholder="Write something mind-blowing"
             rows={6}
-            className="w-full px-4 py-3 h-[179px] border border-[#E2E8F0] rounded-[4px] outline-none text-[14px] font-[400] leading-[21px] resize-none"
+            className="w-full px-4 py-3 h-44 border border-gray-300 rounded outline-none text-sm resize-none"
             required
           />
         </div>
@@ -53,14 +53,14 @@ const AddPostForm: React.FC<AddPostFormProps> = ({ onSubmit, onCancel, isLoading
           <button
             type="button"
             onClick={onCancel}
-            className=" py-2 w-[78px] h-[40px] text-[#334155] text-[14px] font-[400] text-center bg-white border border-[#E2E8F0] rounded-[4px] hover:bg-gray-50 outline-none text-center"
+            className="py-2 w-20 h-10 text-gray-700 text-sm bg-white border border-gray-300 rounded hover:bg-gray-50 outline-none"
           >
             Cancel
           </button>
           <button
             type="submit"
             disabled={isLoading}
-            className={`py-2 px-4 ${isLoading ? "w-[112px]" :"w-[82px]"} h-[40px] text-[#FFFFFF] text-[14px] font-[400] text-center bg-[#334155] border border-[#334155] rounded-[4px] outline-none text-center flex items-center justify-center`}
+            className={`py-2 px-4 ${isLoading ? "w-28" : "w-20"} h-10 text-white text-sm bg-gray-700 border border-gray-700 rounded outline-none flex items-center justify-center`}
           >
             {isLoading ? (<div className='px-4 flex items-center justify-around'>
               <span className='mx-2'>

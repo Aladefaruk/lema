@@ -19,7 +19,7 @@ const FormInput: React.FC<FormInputProps> = ({
 }) => {
   return (
     <div className="mb-6">
-      <label htmlFor={id} className="block text-[18px] font-[500] text-[#535862] mb-2">
+      <label htmlFor={id} className="block text-lg font-medium text-gray-600 mb-2">
         {label}
       </label>
       <input
@@ -28,7 +28,7 @@ const FormInput: React.FC<FormInputProps> = ({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="w-full px-4 py-3 border border-[#E2E8F0] rounded-[4px] outline-none text-[14px] font-[400] leading-[21px]"
+        className="w-full px-4 py-3 border border-gray-300 rounded outline-none text-sm"
         required={required}
       />
     </div>

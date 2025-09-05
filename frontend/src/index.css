@@ -1,6 +1,6 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* Base styles */
 * {
@@ -19,60 +19,6 @@ html, body {
 #root {
   min-height: 100vh;
 }
-
-/* Critical utility classes - always loaded */
-.bg-white { background-color: #ffffff !important; }
-.text-gray-900 { color: #111827 !important; }
-.text-gray-500 { color: #6b7280 !important; }
-.border { border: 1px solid #e5e7eb !important; }
-.rounded-lg { border-radius: 0.5rem !important; }
-.p-4 { padding: 1rem !important; }
-.px-4 { padding-left: 1rem !important; padding-right: 1rem !important; }
-.px-6 { padding-left: 1.5rem !important; padding-right: 1.5rem !important; }
-.py-4 { padding-top: 1rem !important; padding-bottom: 1rem !important; }
-.py-6 { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; }
-.py-8 { padding-top: 2rem !important; padding-bottom: 2rem !important; }
-.py-20 { padding-top: 5rem !important; padding-bottom: 5rem !important; }
-.py-32 { padding-top: 8rem !important; padding-bottom: 8rem !important; }
-.mb-6 { margin-bottom: 1.5rem !important; }
-.shadow-sm { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important; }
-.hover\:bg-gray-50:hover { background-color: #f9fafb !important; }
-.cursor-pointer { cursor: pointer !important; }
-.w-full { width: 100% !important; }
-.min-w-full { min-width: 100% !important; }
-.max-w-6xl { max-width: 72rem !important; }
-.mx-auto { margin-left: auto !important; margin-right: auto !important; }
-.text-left { text-align: left !important; }
-.text-center { text-align: center !important; }
-.truncate { overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap !important; }
-.min-h-screen { min-height: 100vh !important; }
-.flex { display: flex !important; }
-.justify-end { justify-content: flex-end !important; }
-.justify-center { justify-content: center !important; }
-.items-center { align-items: center !important; }
-.space-x-2 > :not([hidden]) ~ :not([hidden]) { margin-left: 0.5rem !important; }
-.space-x-3 > :not([hidden]) ~ :not([hidden]) { margin-left: 0.75rem !important; }
-.rounded { border-radius: 0.25rem !important; }
-.font-medium { font-weight: 500 !important; }
-.text-sm { font-size: 0.875rem !important; }
-.disabled\:opacity-50:disabled { opacity: 0.5 !important; }
-.disabled\:cursor-not-allowed:disabled { cursor: not-allowed !important; }
-
-/* Custom component styles */
-.text-\[60px\] { font-size: 60px !important; }
-.leading-\[72px\] { line-height: 72px !important; }
-.font-\[500\] { font-weight: 500 !important; }
-.text-\[\#181D27\] { color: #181D27 !important; }
-.bg-\[\#fff\] { background-color: #ffffff !important; }
-.text-\[12px\] { font-size: 12px !important; }
-.leading-\[18px\] { line-height: 18px !important; }
-.text-\[\#535862\] { color: #535862 !important; }
-.font-\[400\] { font-weight: 400 !important; }
-.border-\[1px\] { border-width: 1px !important; }
-.rounded-\[8px\] { border-radius: 8px !important; }
-.border-\[\#E9EAEB\] { border-color: #E9EAEB !important; }
-.h-\[332px\] { height: 332px !important; }
-.border-b-\[1px\] { border-bottom-width: 1px !important; }
 
 /* Test Tailwind is working */
 .test-tailwind {

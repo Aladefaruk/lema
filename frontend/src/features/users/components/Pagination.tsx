@@ -39,11 +39,10 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 0}
-        className="flex items-center px-3 py-2 text-[14px] text-[#535862] font-[500] hover:text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="flex items-center px-3 py-2 text-sm text-gray-600 font-medium hover:text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed"
       >
         <ArrowLeftIcon />
-        <span className='ml-4'>        Previous
-</span>
+        <span className='ml-4'>Previous</span>
       </button>
       
       <div className="flex space-x-1">
@@ -54,10 +53,10 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
             <button
               key={page}
               onClick={() => onPageChange(page)}
-              className={`px-3 py-2 text-[14px] rounded-[8px] w-[40px] h-[40px] ${
+              className={`px-3 py-2 text-sm rounded-lg w-10 h-10 ${
                 currentPage === page
-                ? 'bg-[#F9F5FF] text-[#7F56D9]'
-                : 'text-[#717680] hover:text-gray-900 hover:bg-gray-100'
+                ? 'bg-purple-50 text-purple-600'
+                : 'text-gray-500 hover:text-gray-900 hover:bg-gray-100'
               }`}
             >
               {page + 1}
@@ -69,10 +68,10 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage >= totalPages - 1}
-        className="flex items-center px-3 py-2 text-[14px] text-[#535862] font-[500] hover:text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="flex items-center px-3 py-2 text-sm text-gray-600 font-medium hover:text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        <span className='mr-4'>        Next
-        </span>       <ArrowRightIcon/>
+        <span className='mr-4'>Next</span>
+        <ArrowRightIcon/>
       </button>
     </div>
   );

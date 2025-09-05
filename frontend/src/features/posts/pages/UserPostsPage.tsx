@@ -57,14 +57,14 @@ const UserPostsPage: React.FC = () => {
           className="flex items-center  mb-8"
         >
           <ArrowLeftIcon />
-          <span className='ml-3 text-[#535862]  text-[14px] leading-[20px]   font-[600]'>
+          <span className='ml-3 text-gray-600 text-sm font-semibold'>
             Back to Users
-</span>
+          </span>
         </button>
         
         <div className="mb-12">
-          <h1 className="text-[#181D27]  text-[36px] leading-[60px]   font-[500] mb-2">{userName}</h1>
-          <p className="text-[#535862] text-[14px] leading-[20px]  font-[400] ">{userEmail} <span className='font-[500]'>• {posts?.length || 0} Posts</span> </p>
+          <h1 className="text-gray-900 text-4xl font-medium mb-2">{userName}</h1>
+          <p className="text-gray-600 text-sm">{userEmail} <span className='font-medium'>• {posts?.length || 0} Posts</span></p>
         </div>
 
 
