@@ -1,7 +1,7 @@
 /** @format */
 
 import * as sqlite3 from "sqlite3";
-import * as config from "config";
+import config from "config";
 
 const dbPath = config.get("dbPath") as string;
 const db = new sqlite3.Database(dbPath);
