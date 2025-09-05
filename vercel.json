@@ -1,16 +1,25 @@
 {
-  "buildCommand": "cd frontend && npm install && npm run build",
-  "outputDirectory": "frontend/build",
-  "installCommand": "npm install --prefix frontend",
-  "functions": {
-    "backend/src/index.ts": {
-      "runtime": "@vercel/node"
-    }
-  },
-  "rewrites": [
+  "builds": [
     {
-      "source": "/api/(.*)",
-      "destination": "/backend/src/index.ts"
+      "src": "frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "build"
+      }
+    },
+    {
+      "src": "backend/src/index.ts",
+      "use": "@vercel/node@3.0.0"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/backend/src/index.ts"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/frontend/build/$1"
     }
   ]
 }
