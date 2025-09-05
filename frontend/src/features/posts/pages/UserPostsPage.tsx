@@ -20,8 +20,7 @@ const UserPostsPage: React.FC = () => {
     return <ErrorMessage message="User ID not found" />;
   }
 
-  // Get user info for display (simplified - in real app you'd have a separate hook)
-  const userName = "James Sunderland"; // This would come from user data
+  const userName = "James Sunderland";
   const userEmail = "james.sunderland@acme.corp";
 
   const handleAddPost = (title: string, body: string) => {
@@ -66,8 +65,6 @@ const UserPostsPage: React.FC = () => {
           <h1 className="text-gray-900 text-4xl font-medium mb-2">{userName}</h1>
           <p className="text-gray-600 text-sm">{userEmail} <span className='font-medium'>• {posts?.length || 0} Posts</span></p>
         </div>
-
-
 
         {createPostMutation.isError && (
           <ErrorMessage message="Failed to create post. Please try again." />
