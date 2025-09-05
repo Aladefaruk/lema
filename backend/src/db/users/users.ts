@@ -4,7 +4,7 @@ import {
   selectCountOfUsersTemplate,
   selectUsersTemplate,
 } from "./query-templates";
-import { User } from "./types";
+import { User, Address } from "./types";
 
 export const getUsersCount = (): Promise<number> =>
   new Promise((resolve, reject) => {
@@ -24,14 +24,34 @@ export const getUsers = (
   pageSize: number
 ): Promise<User[]> =>
   new Promise((resolve, reject) => {
-    connection.all<User>(
+    connection.all(
       selectUsersTemplate,
       [pageNumber * pageSize, pageSize],
-      (error, results) => {
+      (error, results: any[]) => {
         if (error) {
           reject(error);
         }
-        resolve(results);
+        const users = results.map(row => {
+          const user: User = {
+            id: row.id,
+            name: row.name,
+            username: row.username,
+            email: row.email,
+            phone: row.phone
+          };
+          if (row.address_id) {
+            user.address = {
+              id: row.address_id,
+              user_id: row.id,
+              street: row.street,
+              state: row.state,
+              city: row.city,
+              zipcode: row.zipcode
+            };
+          }
+          return user;
+        });
+        resolve(users);
       }
     );
   });

@@ -110,6 +110,85 @@ You are required to implement the following backend functionalities:
 - At least one unit test demonstrating testing of a component or functionality.
 - Instructions on how to run the application locally, including setting up the backend and frontend.
 
+## Setup Instructions
+
+### Prerequisites
+- Node.js (v16 or higher)
+- pnpm (or npm/yarn)
+
+### Backend Setup
+
+1. Navigate to the backend directory:
+```bash
+cd backend
+```
+
+2. Install dependencies:
+```bash
+pnpm install
+```
+
+3. Start the backend server:
+```bash
+pnpm start
+```
+
+The backend server will run on `http://localhost:3001`
+
+### Frontend Setup
+
+1. Navigate to the frontend directory:
+```bash
+cd frontend
+```
+
+2. Install dependencies:
+```bash
+pnpm install
+```
+
+3. Start the frontend development server:
+```bash
+pnpm start
+```
+
+The frontend will run on `http://localhost:3000`
+
+### Running Tests
+
+To run the frontend unit tests:
+```bash
+cd frontend
+pnpm test
+```
+
+### Database
+
+The SQLite database (`data.db`) is already included in the backend directory with sample data. No additional setup is required.
+
+## Implementation Status
+
+### ✅ Completed Backend Features
+- GET /users with pagination
+- GET /users/count
+- GET /posts with userId filtering
+- POST /posts (create new post)
+- DELETE /posts/:id (delete post)
+- Users now include address information
+- Comprehensive error handling
+
+### ✅ Completed Frontend Features
+- Users table with pagination (4 users per page)
+- Address formatting with ellipsis overflow
+- User posts page with navigation
+- Create new posts functionality
+- Delete posts with confirmation
+- React Query for state management
+- Loading and error states
+- Responsive design with Tailwind CSS
+- Unit tests for UserTable component
+- Clean component architecture
+
 ## Submission Instructions
 
 - **Code Repository**: Provide access to your code via a Git repository (e.g., GitHub, GitLab).

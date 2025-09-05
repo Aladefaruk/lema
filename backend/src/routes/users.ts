@@ -12,13 +12,21 @@ router.get("/", async (req: Request, res: Response) => {
     return;
   }
 
-  const users = await getUsers(pageNumber, pageSize);
-  res.send(users);
+  try {
+    const users = await getUsers(pageNumber, pageSize);
+    res.send(users);
+  } catch (error) {
+    res.status(500).send({ error: "Failed to fetch users" });
+  }
 });
 
 router.get("/count", async (req: Request, res: Response) => {
-  const count = await getUsersCount();
-  res.send({ count });
+  try {
+    const count = await getUsersCount();
+    res.send({ count });
+  } catch (error) {
+    res.status(500).send({ error: "Failed to fetch user count" });
+  }
 });
 
 export default router;

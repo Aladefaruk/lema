@@ -16,8 +16,10 @@ export interface User {
   address?: Address;
 }
 
-export type Pagination = {
-  pageNumber: number;
-  pageSize: number;
-  totalUsers: number;
-};
+export interface Post {
+  id: string;
+  user_id: string;
+  title: string;
+  body: string;
+  created_at: string;
+}
