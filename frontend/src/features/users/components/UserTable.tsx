@@ -41,7 +41,7 @@ const UserTable: React.FC<UserTableProps> = ({ users, onUserClick, isLoading }) 
               </td>
             </tr>
           ) : (
-            users.map((user, index) => (
+            (users || []).map((user, index) => (
               <tr
                 key={user.id}
                 onClick={() => onUserClick(user)}
