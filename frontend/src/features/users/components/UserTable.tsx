@@ -9,7 +9,8 @@ interface UserTableProps {
 }
 
 const UserTable: React.FC<UserTableProps> = ({ users, onUserClick, isLoading }) => {
-
+  // Debug logging
+  console.log('UserTable received users:', users, 'type:', typeof users, 'isArray:', Array.isArray(users));
 
   const formatAddress = (user: User) => {
     if (!user.address) return 'No address';
@@ -41,7 +42,7 @@ const UserTable: React.FC<UserTableProps> = ({ users, onUserClick, isLoading }) 
               </td>
             </tr>
           ) : (
-            (users || []).map((user, index) => (
+            Array.isArray(users) ? users.map((user, index) => (
               <tr
                 key={user.id}
                 onClick={() => onUserClick(user)}
@@ -61,7 +62,13 @@ const UserTable: React.FC<UserTableProps> = ({ users, onUserClick, isLoading }) 
                   </div>
                 </td>
               </tr>
-            ))
+            )) : (
+              <tr>
+                <td colSpan={3} className="px-6 py-4 text-center text-red-500">
+                  Invalid data format received
+                </td>
+              </tr>
+            )
           )}
         </tbody>
       </table>
