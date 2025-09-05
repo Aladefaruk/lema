@@ -189,8 +189,3 @@ The SQLite database (`data.db`) is already included in the backend directory wit
 - Unit tests for UserTable component
 - Clean component architecture
 
-## Submission Instructions
-
-- **Code Repository**: Provide access to your code via a Git repository (e.g., GitHub, GitLab).
-- **Readme File**: Include a `README.md` file with instructions on how to install dependencies, set up the database, run migrations (if any), and start both the backend and frontend servers.
-- **Testing Instructions**: Include instructions on how to run your unit tests.
