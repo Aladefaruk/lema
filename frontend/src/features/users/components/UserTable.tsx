@@ -42,7 +42,7 @@ const UserTable: React.FC<UserTableProps> = ({ users, onUserClick, isLoading }) 
               </td>
             </tr>
           ) : (
-            Array.isArray(users) ? users.map((user, index) => (
+            users?.map((user, index) => (
               <tr
                 key={user.id}
                 onClick={() => onUserClick(user)}
@@ -62,10 +62,10 @@ const UserTable: React.FC<UserTableProps> = ({ users, onUserClick, isLoading }) 
                   </div>
                 </td>
               </tr>
-            )) : (
+            )) || (
               <tr>
-                <td colSpan={3} className="px-6 py-4 text-center text-red-500">
-                  Invalid data format received
+                <td colSpan={3} className="px-6 py-4 text-center text-gray-500">
+                  No users found
                 </td>
               </tr>
             )
