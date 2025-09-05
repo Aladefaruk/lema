@@ -25,8 +25,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "vercel-build": "react-scripts build",
+    "build": "NODE_ENV=production react-scripts build && node build-check.js",
+    "build:render": "NODE_ENV=production react-scripts build",
+    "vercel-build": "NODE_ENV=production react-scripts build",
     "test": "CI=true react-scripts test",
     "eject": "react-scripts eject"
   },

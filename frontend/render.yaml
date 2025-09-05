@@ -1,11 +1,11 @@
 services:
   - type: web
-    name: web-developer-frontend
+    name: web-developer-assignment-frontend
     env: static
-    buildCommand: npm install && npm run build
+    buildCommand: npm install && npm run build:render
     staticPublishPath: ./build
     envVars:
-      - key: REACT_APP_API_URL
-        value: https://web-developer-backend.onrender.com
       - key: NODE_ENV
         value: production
+      - key: CI
+        value: false
