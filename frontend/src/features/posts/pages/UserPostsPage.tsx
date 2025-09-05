@@ -12,10 +12,13 @@ const UserPostsPage: React.FC = () => {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
 
-  const { data: posts, isLoading, error } = usePosts(userId!);
-  
+  const { data: posts, isLoading, error } = usePosts(userId || '');
   const createPostMutation = useCreatePost();
   const deletePostMutation = useDeletePost();
+
+  if (!userId) {
+    return <ErrorMessage message="User ID not found" />;
+  }
 
   // Get user info for display (simplified - in real app you'd have a separate hook)
   const userName = "James Sunderland"; // This would come from user data
@@ -23,7 +26,7 @@ const UserPostsPage: React.FC = () => {
 
   const handleAddPost = (title: string, body: string) => {
     createPostMutation.mutate(
-      { userId: userId!, title, body },
+      { userId, title, body },
       {
         onSuccess: () => {
           setShowModal(false);
@@ -74,7 +77,7 @@ const UserPostsPage: React.FC = () => {
           <ErrorMessage message="Failed to delete post. Please try again." />
         )}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:flex flex-wrap items-center gap-5">
+        <div className="mx-auto flex flex-wrap items-center gap-5">
           <AddPostCard onClick={() => setShowModal(true)} />
           {posts && posts.length > 0 && (
             posts.map((post) => (

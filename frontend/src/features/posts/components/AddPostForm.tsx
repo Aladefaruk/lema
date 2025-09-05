@@ -60,10 +60,10 @@ const AddPostForm: React.FC<AddPostFormProps> = ({ onSubmit, onCancel, isLoading
           <button
             type="submit"
             disabled={isLoading}
-            className={`py-2 px-4 ${isLoading ? "w-[82px]" :"w-[112px]"} h-[40px] text-[#FFFFFF] text-[14px] font-[400] text-center bg-[#334155] border border-[#334155] rounded-[4px] outline-none text-center flex items-center justify-center`}
+            className={`py-2 px-4 ${isLoading ? "w-[112px]" :"w-[82px]"} h-[40px] text-[#FFFFFF] text-[14px] font-[400] text-center bg-[#334155] border border-[#334155] rounded-[4px] outline-none text-center flex items-center justify-center`}
           >
-            {isLoading ? (<div className='px-4 flex items-center justfy-around'>
-              <span className='mr-2'>
+            {isLoading ? (<div className='px-4 flex items-center justify-around'>
+              <span className='mx-2'>
                 Publish
               </span>
 
