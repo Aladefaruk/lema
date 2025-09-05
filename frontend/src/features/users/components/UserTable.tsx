@@ -9,7 +9,6 @@ interface UserTableProps {
 }
 
 const UserTable: React.FC<UserTableProps> = ({ users, onUserClick, isLoading }) => {
-  console.log('UserTable received users:', users, 'type:', typeof users, 'isArray:', Array.isArray(users));
 
   const formatAddress = (user: User) => {
     if (!user.address) return 'No address';
