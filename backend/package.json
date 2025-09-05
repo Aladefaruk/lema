@@ -8,7 +8,7 @@
   "dependencies": {
     "config": "^3.3.12",
     "express": "^4.21.1",
-    "sqlite3": "^5.1.7"
+    "better-sqlite3": "^9.2.2"
   },
   "scripts": {
     "build": "tsc",
@@ -19,7 +19,7 @@
     "@types/config": "^3.3.5",
     "@types/express": "^5.0.0",
     "@types/node": "^22.10.1",
-    "@types/sqlite3": "^3.1.11",
+    "@types/better-sqlite3": "^7.6.8",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.2"
   }
