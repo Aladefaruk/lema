@@ -11,8 +11,8 @@ interface UserTableProps {
 const UserTable: React.FC<UserTableProps> = ({ users, onUserClick, isLoading }) => {
 
   const formatAddress = (user: User) => {
-    if (!user.address) return 'No address';
-    const { street, state, city, zipcode } = user.address;
+    if (!user?.address) return 'No address';
+    const { street, state, city, zipcode } = user?.address;
     return `${street}, ${state}, ${city}, ${zipcode}`;
   };
   return (
