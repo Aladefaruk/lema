@@ -1,7 +1,14 @@
 /** @format */
 
-import Database from "better-sqlite3";
+import sqlite3 from "sqlite3";
 import config from "config";
+import { promisify } from "util";
 
 const dbPath = config.get("dbPath") as string;
-export const connection = new Database(dbPath);
+const db = new sqlite3.Database(dbPath);
+
+export const connection = {
+  all: promisify(db.all.bind(db)),
+  run: promisify(db.run.bind(db)),
+  get: promisify(db.get.bind(db))
+};

@@ -6,7 +6,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "better-sqlite3": "^9.2.2",
+
     "config": "^3.3.12",
     "express": "^4.21.1",
     "sqlite3": "^5.1.7"
@@ -20,7 +20,7 @@
     "node": ">=16.0.0"
   },
   "devDependencies": {
-    "@types/better-sqlite3": "^7.6.8",
+
     "@types/config": "^3.3.5",
     "@types/express": "^5.0.0",
     "@types/node": "^22.10.1",
