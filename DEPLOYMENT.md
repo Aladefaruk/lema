@@ -48,6 +48,8 @@ This guide explains how to deploy the backend and frontend separately on Render.
    - Click "Create Static Site"
    - Wait for deployment to complete
 
+
+
 ## Important Notes
 
 - The backend must be deployed first to get the URL for the frontend configuration
