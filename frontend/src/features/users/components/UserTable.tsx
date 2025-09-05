@@ -9,7 +9,6 @@ interface UserTableProps {
 }
 
 const UserTable: React.FC<UserTableProps> = ({ users, onUserClick, isLoading }) => {
-  // Debug logging
   console.log('UserTable received users:', users, 'type:', typeof users, 'isArray:', Array.isArray(users));
 
   const formatAddress = (user: User) => {
@@ -17,7 +16,6 @@ const UserTable: React.FC<UserTableProps> = ({ users, onUserClick, isLoading }) 
     const { street, state, city, zipcode } = user.address;
     return `${street}, ${state}, ${city}, ${zipcode}`;
   };
-
   return (
     <div className="bg-white rounded-lg border-[1px] rounded-[8px] border-[#E9EAEB]">
       <table className="min-w-full h-[332px]">
