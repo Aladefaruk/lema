@@ -44,17 +44,17 @@ const UserTable: React.FC<UserTableProps> = ({ users, onUserClick, isLoading }) 
           ) : (
             users?.map((user, index) => (
               <tr
-                key={user.id}
+                key={user?.id}
                 onClick={() => onUserClick(user)}
                 className={`cursor-pointer hover:bg-gray-50 text-[12px] text-[#535862] font-[400] ${
                   index !== users.length - 1 ? 'border-b-[1px] border-[#E9EAEB]' : ''
                 }`}
               >
                 <td className="px-6 py-6  font-[500]">
-                  {user.name}
+                  {user?.name}
                 </td>
                 <td className="px-6 py-6 ">
-                  {user.email}
+                  {user?.email}
                 </td>
                 <td className="px-6 py-6 " style={{ width: '392px' }}>
                   <div className="truncate" title={formatAddress(user)}>
