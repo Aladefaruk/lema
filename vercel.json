@@ -9,12 +9,14 @@
     },
     {
       "src": "backend/src/index.ts",
-      "use": "@vercel/node@3.0.0",
-      "config": {
-        "runtime": "nodejs18.x"
-      }
+      "use": "@vercel/node"
     }
   ],
+  "functions": {
+    "backend/src/index.ts": {
+      "runtime": "nodejs18.x"
+    }
+  },
   "routes": [
     {
       "src": "/api/(.*)",
