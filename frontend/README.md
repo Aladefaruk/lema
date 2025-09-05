@@ -1,4 +1,4 @@
-# Frontend - User Management App
+# Frontend
 
 A React TypeScript application for managing users and their posts.
 
@@ -8,7 +8,7 @@ A React TypeScript application for managing users and their posts.
 - **User Posts**: View, create, and delete posts for each user
 - **Responsive Design**: Built with Tailwind CSS
 - **State Management**: React Query for server state
-- **Error Handling**: Graceful error states and loading indicators
+- **Error Handling**: Error states and loading indicators
 - **Unit Tests**: Jest and React Testing Library
 
 ## Tech Stack
