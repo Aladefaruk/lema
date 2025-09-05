@@ -1,5 +1,6 @@
-import express, { Application } from "express";
-import config from "config";
+import * as express from "express";
+import { Application } from "express";
+import * as config from "config";
 import postsRouter from "./routes/posts";
 import usersRouter from "./routes/users";
 const port = process.env.PORT || config.get("port") as number;

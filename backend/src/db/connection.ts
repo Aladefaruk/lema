@@ -1,7 +1,7 @@
 /** @format */
 
-import sqlite3 from "sqlite3";
-import config from "config";
+import * as sqlite3 from "sqlite3";
+import * as config from "config";
 import { promisify } from "util";
 
 const dbPath = config.get("dbPath") as string;
