@@ -6,7 +6,7 @@ import { User } from '../shared/types';
 // Mock the Loader component
 jest.mock('../shared', () => ({
   ...jest.requireActual('../shared'),
-  Loader: () => <div data-testid="loader">Loading...</div>,
+  Loader: () => <div data-testid="mock-loader">Loading...</div>,
 }));
 
 const mockUsers: User[] = [
@@ -61,7 +61,7 @@ describe('UserTable Component', () => {
     it('displays loading state correctly', () => {
       render(<UserTable users={[]} onUserClick={mockOnUserClick} isLoading={true} />);
       
-      expect(screen.getAllByTestId('loader')[0]).toBeInTheDocument();
+      expect(screen.getAllByTestId('mock-loader')[0]).toBeInTheDocument();
     });
 
     it('displays empty state when no users are provided', () => {

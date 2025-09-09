@@ -18,7 +18,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, onDelete, isDeleting = false 
         title="Delete post"
         disabled={isDeleting}
       >
-        <TrashIcon />
+        {isDeleting ? <div className="w-4 h-4"><Loader /></div> : <TrashIcon />}
       </button>
       
       <div className="overflow-hidden h-52 flex flex-col">

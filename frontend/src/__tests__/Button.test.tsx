@@ -39,6 +39,13 @@ describe('Button Component', () => {
       const button = screen.getByRole('button');
       expect(button).toHaveClass('text-gray-600');
     });
+
+    it('applies danger variant styles correctly', () => {
+      render(<Button variant="danger">Danger</Button>);
+      
+      const button = screen.getByRole('button');
+      expect(button).toHaveClass('bg-red-600', 'text-white', 'border-red-600');
+    });
   });
 
   describe('Sizes', () => {

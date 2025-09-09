@@ -5,14 +5,15 @@ import { Post } from '../shared/types';
 
 jest.mock('../shared', () => ({
   ...jest.requireActual('../shared'),
-  Loader: () => <div data-testid="loader">Loading...</div>,
+  Loader: () => <div data-testid="mock-loader">Loading...</div>,
 }));
 
 const mockPost: Post = {
   id: '1',
-  userId: '1',
+  user_id: '1',
   title: 'Test Post Title',
   body: 'This is a test post body content that should be displayed in the card.',
+  created_at: '2023-01-01T00:00:00.000Z',
 };
 
 describe('PostCard Component', () => {
@@ -43,7 +44,7 @@ describe('PostCard Component', () => {
     it('shows loading state when deleting', () => {
       render(<PostCard post={mockPost} onDelete={mockOnDelete} isDeleting={true} />);
       
-      expect(screen.getByTestId('loader')).toBeInTheDocument();
+      expect(screen.queryByTestId('mock-loader')).toBeInTheDocument();
     });
 
     it('disables delete button when deleting', () => {
