@@ -36,10 +36,10 @@ const UserPostsPage: React.FC = () => {
     );
   }, [userId, createPostMutation]);
 
-  const handleDeletePost = useCallback((postId: string) => {
+  const handleDeletePost = (postId: string) => {
     setPostToDelete(postId);
     setShowDeleteModal(true);
-  }, []);
+  };
 
   const handleConfirmDelete = useCallback(() => {
     if (postToDelete) {
@@ -52,22 +52,22 @@ const UserPostsPage: React.FC = () => {
     }
   }, [postToDelete, deletePostMutation]);
 
-  const handleCancelDelete = useCallback(() => {
+  const handleCancelDelete = () => {
     setShowDeleteModal(false);
     setPostToDelete(null);
-  }, []);
+  };
 
   const handleBackToUsers = useCallback(() => {
     navigate('/');
   }, [navigate]);
 
-  const handleOpenModal = useCallback(() => {
+  const handleOpenModal = () => {
     setShowModal(true);
-  }, []);
+  };
 
-  const handleCloseModal = useCallback(() => {
+  const handleCloseModal = () => {
     setShowModal(false);
-  }, []);
+  };
 
   const postCards = useMemo(() => {
     return posts?.map((post) => (
