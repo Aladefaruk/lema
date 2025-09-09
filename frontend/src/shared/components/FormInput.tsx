@@ -7,6 +7,7 @@ interface FormInputProps {
   onChange: (value: string) => void;
   placeholder?: string;
   required?: boolean;
+  maxLength?: number;
 }
 
 const FormInput: React.FC<FormInputProps> = ({
@@ -15,7 +16,8 @@ const FormInput: React.FC<FormInputProps> = ({
   value,
   onChange,
   placeholder,
-  required = false
+  required = false,
+  maxLength
 }) => {
   return (
     <div className="mb-6">
@@ -28,9 +30,15 @@ const FormInput: React.FC<FormInputProps> = ({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
+        maxLength={maxLength}
         className="w-full px-4 py-3 border border-gray-300 rounded outline-none text-sm"
         required={required}
       />
+      {maxLength && (
+        <div className="text-xs text-gray-500 mt-1 text-right">
+          {value.length}/{maxLength} characters
+        </div>
+      )}
     </div>
   );
 };

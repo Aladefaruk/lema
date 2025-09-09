@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { User } from '../../../shared/types';
 import { Loader } from '../../../shared';
 
@@ -9,12 +9,66 @@ interface UserTableProps {
 }
 
 const UserTable: React.FC<UserTableProps> = ({ users, onUserClick, isLoading }) => {
-
-  const formatAddress = (user: User) => {
+  const formatAddress = useCallback((user: User) => {
     if (!user?.address) return 'No address';
     const { street, state, city, zipcode } = user?.address;
     return `${street}, ${state}, ${city}, ${zipcode}`;
-  };
+  }, []);
+
+  const handleUserClick = useCallback((user: User) => {
+    onUserClick(user);
+  }, [onUserClick]);
+
+  const userRows = useMemo(() => {
+    return users?.map((user, index) => (
+      <tr
+        key={user?.id}
+        onClick={() => handleUserClick(user)}
+        className={`cursor-pointer hover:bg-gray-50 text-xs text-gray-600 ${
+          index !== users.length - 1 ? 'border-b border-gray-200' : ''
+        }`}
+      >
+        <td className="px-6 py-6 font-medium">
+          {user?.name}
+        </td>
+        <td className="px-6 py-6">
+          {user?.email}
+        </td>
+        <td className="px-6 py-6" style={{ width: '392px' }}>
+          <div className="truncate" title={formatAddress(user)}>
+            {formatAddress(user)}
+          </div>
+        </td>
+      </tr>
+    ));
+  }, [users, handleUserClick, formatAddress]);
+
+  const mobileCards = useMemo(() => {
+    return users?.map((user) => (
+      <div
+        key={user?.id}
+        onClick={() => handleUserClick(user)}
+        className="bg-white rounded-lg border border-gray-200 p-4 cursor-pointer hover:bg-gray-50"
+      >
+        <div className="space-y-2">
+          <div>
+            <span className="text-xs text-gray-500 font-medium">Full Name</span>
+            <p className="text-sm text-gray-900 font-medium">{user?.name}</p>
+          </div>
+          <div>
+            <span className="text-xs text-gray-500 font-medium">Email Address</span>
+            <p className="text-sm text-gray-600">{user?.email}</p>
+          </div>
+          <div>
+            <span className="text-xs text-gray-500 font-medium">Address</span>
+            <p className="text-sm text-gray-600 truncate" title={formatAddress(user)}>
+              {formatAddress(user)}
+            </p>
+          </div>
+        </div>
+      </div>
+    ));
+  }, [users, handleUserClick, formatAddress]);
   return (
     <>
       {/* Desktop Table */}
@@ -40,34 +94,14 @@ const UserTable: React.FC<UserTableProps> = ({ users, onUserClick, isLoading }) 
                   <Loader />
                 </td>
               </tr>
+            ) : userRows?.length ? (
+              userRows
             ) : (
-              users?.map((user, index) => (
-                <tr
-                  key={user?.id}
-                  onClick={() => onUserClick(user)}
-                  className={`cursor-pointer hover:bg-gray-50 text-xs text-gray-600 ${
-                    index !== users.length - 1 ? 'border-b border-gray-200' : ''
-                  }`}
-                >
-                  <td className="px-6 py-6 font-medium">
-                    {user?.name}
-                  </td>
-                  <td className="px-6 py-6">
-                    {user?.email}
-                  </td>
-                  <td className="px-6 py-6" style={{ width: '392px' }}>
-                    <div className="truncate" title={formatAddress(user)}>
-                      {formatAddress(user)}
-                    </div>
-                  </td>
-                </tr>
-              )) || (
-                <tr>
-                  <td colSpan={3} className="px-6 py-4 text-center text-gray-500">
-                    No users found
-                  </td>
-                </tr>
-              )
+              <tr>
+                <td colSpan={3} className="px-6 py-4 text-center text-gray-500">
+                  No users found
+                </td>
+              </tr>
             )}
           </tbody>
         </table>
@@ -79,35 +113,12 @@ const UserTable: React.FC<UserTableProps> = ({ users, onUserClick, isLoading }) 
           <div className="py-20 text-center">
             <Loader />
           </div>
+        ) : mobileCards?.length ? (
+          mobileCards
         ) : (
-          users?.map((user) => (
-            <div
-              key={user?.id}
-              onClick={() => onUserClick(user)}
-              className="bg-white rounded-lg border border-gray-200 p-4 cursor-pointer hover:bg-gray-50"
-            >
-              <div className="space-y-2">
-                <div>
-                  <span className="text-xs text-gray-500 font-medium">Full Name</span>
-                  <p className="text-sm text-gray-900 font-medium">{user?.name}</p>
-                </div>
-                <div>
-                  <span className="text-xs text-gray-500 font-medium">Email Address</span>
-                  <p className="text-sm text-gray-600">{user?.email}</p>
-                </div>
-                <div>
-                  <span className="text-xs text-gray-500 font-medium">Address</span>
-                  <p className="text-sm text-gray-600 truncate" title={formatAddress(user)}>
-                    {formatAddress(user)}
-                  </p>
-                </div>
-              </div>
-            </div>
-          )) || (
-            <div className="bg-white rounded-lg border border-gray-200 p-6 text-center text-gray-500">
-              No users found
-            </div>
-          )
+          <div className="bg-white rounded-lg border border-gray-200 p-6 text-center text-gray-500">
+            No users found
+          </div>
         )}
       </div>
     </>

@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useMemo, useCallback } from 'react';
 import { ArrowLeftIcon, ArrowRightIcon } from '../../../assets/icons';
+import { Button } from '../../../shared';
 
 interface PaginationProps {
   currentPage: number;
@@ -8,7 +9,7 @@ interface PaginationProps {
 }
 
 const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPageChange }) => {
-  const getPageNumbers = () => {
+  const pageNumbers = useMemo(() => {
     const pages = [];
     const maxVisible = 5;
     
@@ -32,26 +33,36 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
     }
     
     return pages;
-  };
+  }, [currentPage, totalPages]);
+
+  const handlePrevious = useCallback(() => {
+    onPageChange(currentPage - 1);
+  }, [currentPage, onPageChange]);
+
+  const handleNext = useCallback(() => {
+    onPageChange(currentPage + 1);
+  }, [currentPage, onPageChange]);
 
   return (
     <div className="flex justify-center items-center space-x-1 sm:space-x-2 mt-8">
-      <button
-        onClick={() => onPageChange(currentPage - 1)}
+      <Button
+        variant="ghost"
+        onClick={handlePrevious}
         disabled={currentPage === 0}
-        className="flex items-center px-2 sm:px-3 py-2 text-sm text-gray-600 font-medium hover:text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="px-2 sm:px-3 py-2 text-sm font-medium disabled:cursor-not-allowed"
       >
         <ArrowLeftIcon />
         <span className='ml-2 sm:ml-4 hidden sm:inline'>Previous</span>
-      </button>
+      </Button>
       
       <div className="flex space-x-1">
-        {getPageNumbers().map((page, index) => (
+        {pageNumbers.map((page, index) => (
           page === -1 ? (
             <span key={`ellipsis-${index}`} className="px-2 sm:px-3 py-2 text-gray-400">...</span>
           ) : (
-            <button
+            <Button
               key={page}
+              variant="ghost"
               onClick={() => onPageChange(page)}
               className={`px-2 sm:px-3 py-2 text-sm rounded-lg w-8 h-8 sm:w-10 sm:h-10 ${
                 currentPage === page
@@ -60,19 +71,20 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
               }`}
             >
               {page + 1}
-            </button>
+            </Button>
           )
         ))}
       </div>
       
-      <button
-        onClick={() => onPageChange(currentPage + 1)}
+      <Button
+        variant="ghost"
+        onClick={handleNext}
         disabled={currentPage >= totalPages - 1}
-        className="flex items-center px-2 sm:px-3 py-2 text-sm text-gray-600 font-medium hover:text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="px-2 sm:px-3 py-2 text-sm font-medium disabled:cursor-not-allowed"
       >
         <span className='mr-2 sm:mr-4 hidden sm:inline'>Next</span>
         <ArrowRightIcon/>
-      </button>
+      </Button>
     </div>
   );
 };

@@ -14,8 +14,10 @@ export const useCreatePost = () => {
   return useMutation({
     mutationFn: ({ userId, title, body }: { userId: string; title: string; body: string }) =>
       postsApi.createPost(userId, title, body),
-    onSuccess: (_, variables) => {
-      queryClient.invalidateQueries({ queryKey: ['posts', variables.userId] });
+    onSuccess: (newPost, variables) => {
+      queryClient.setQueryData(['posts', variables.userId], (oldPosts: any) => {
+        return oldPosts ? [newPost, ...oldPosts] : [newPost];
+      });
     },
   });
 };

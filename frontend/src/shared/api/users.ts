@@ -7,4 +7,7 @@ export const usersApi = {
 
   getUsersCount: (): Promise<{ count: number }> =>
     apiClient.get('/users/count'),
+
+  getUserById: (userId: string): Promise<User> =>
+    apiClient.get(`/users/${userId}`),
 };
