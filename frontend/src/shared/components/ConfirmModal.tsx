@@ -1,6 +1,7 @@
 import React from 'react';
 import Modal from './Modal';
 import Button from './Button';
+import Loader from './Loader';
 
 interface ConfirmModalProps {
   isOpen: boolean;
@@ -40,8 +41,16 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
             variant="danger"
             onClick={onConfirm}
             disabled={isLoading}
+            className={isLoading ? "w-28" : "w-20"}
           >
-            {confirmText}
+            {isLoading ? (
+              <div className='flex items-center'>
+                <span className='mr-2'>{confirmText}</span>
+                <Loader color="white" size="small" />
+              </div>
+            ) : (
+              confirmText
+            )}
           </Button>
         </div>
       </div>
