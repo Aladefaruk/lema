@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useMemo } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { usePosts, useCreatePost, useDeletePost } from '../hooks/usePosts';
 import PostCard from '../components/PostCard';
 import AddPostForm from '../components/AddPostForm';
@@ -9,7 +9,11 @@ import { ArrowLeftIcon } from '../../../assets/icons';
 
 const UserPostsPage: React.FC = () => {
   const { userId } = useParams<{ userId: string }>();
+  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
+  
+  const userName = searchParams.get('name') || 'Unknown User';
+  const userEmail = searchParams.get('email') || 'No email';
   const [showModal, setShowModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [postToDelete, setPostToDelete] = useState<string | null>(null);
@@ -18,14 +22,8 @@ const UserPostsPage: React.FC = () => {
   const createPostMutation = useCreatePost();
   const deletePostMutation = useDeletePost();
 
-  if (!userId) {
-    return <ErrorMessage message="User ID not found" />;
-  }
-
-  const userName = "James Sunderland";
-  const userEmail = "james.sunderland@acme.corp";
-
   const handleAddPost = useCallback((title: string, body: string) => {
+    if (!userId) return;
     createPostMutation.mutate(
       { userId, title, body },
       {
@@ -36,10 +34,10 @@ const UserPostsPage: React.FC = () => {
     );
   }, [userId, createPostMutation]);
 
-  const handleDeletePost = (postId: string) => {
+  const handleDeletePost = useCallback((postId: string) => {
     setPostToDelete(postId);
     setShowDeleteModal(true);
-  };
+  }, []);
 
   const handleConfirmDelete = useCallback(() => {
     if (postToDelete) {
@@ -52,25 +50,29 @@ const UserPostsPage: React.FC = () => {
     }
   }, [postToDelete, deletePostMutation]);
 
-  const handleCancelDelete = () => {
+  const handleCancelDelete = useCallback(() => {
     setShowDeleteModal(false);
     setPostToDelete(null);
-  };
+  }, []);
 
   const handleBackToUsers = useCallback(() => {
     navigate('/');
   }, [navigate]);
 
-  const handleOpenModal = () => {
+  const handleOpenModal = useCallback(() => {
     setShowModal(true);
-  };
+  }, []);
 
-  const handleCloseModal = () => {
+  const handleCloseModal = useCallback(() => {
     setShowModal(false);
-  };
+  }, []);
+
+  const sortedPosts = useMemo(() => {
+    return posts?.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()) || [];
+  }, [posts]);
 
   const postCards = useMemo(() => {
-    return posts?.map((post) => (
+    return sortedPosts?.map((post) => (
       <PostCard
         key={post.id}
         post={post}
@@ -78,7 +80,11 @@ const UserPostsPage: React.FC = () => {
         isDeleting={deletePostMutation.isPending && postToDelete === post.id}
       />
     ));
-  }, [posts, handleDeletePost, deletePostMutation.isPending, postToDelete]);
+  }, [sortedPosts, handleDeletePost, deletePostMutation.isPending, postToDelete]);
+
+  if (!userId) {
+    return <ErrorMessage message="User ID not found" />;
+  }
 
   if (isLoading) {
     return <Loader fullPage />;

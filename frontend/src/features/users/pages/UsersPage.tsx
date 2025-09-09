@@ -15,7 +15,7 @@ const UsersPage: React.FC = () => {
   const totalPages = useMemo(() => Math.ceil((countData?.count || 0) / 4), [countData?.count]);
 
   const handleUserClick = (user: User) => {
-    navigate(`/users/${user.id}/posts`);
+    navigate(`/users/${user.id}/posts?name=${encodeURIComponent(user.name)}&email=${encodeURIComponent(user.email)}`);
   };
 
   const handlePageChange = (page: number) => {
