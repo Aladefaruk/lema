@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { usePosts, useCreatePost, useDeletePost } from '../hooks/usePosts';
+import { useUser } from '../../users/hooks/useUsers';
 import PostCard from '../components/PostCard';
 import AddPostForm from '../components/AddPostForm';
 import AddPostCard from '../components/AddPostCard';
@@ -12,8 +13,13 @@ const UserPostsPage: React.FC = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   
-  const userName = searchParams.get('name') || 'Unknown User';
-  const userEmail = searchParams.get('email') || 'No email';
+  const queryName = searchParams.get('name');
+  const queryEmail = searchParams.get('email');
+  
+  const { data: user } = useUser(userId || '');
+  
+  const userName = queryName || user?.name || 'Unknown User';
+  const userEmail = queryEmail || user?.email || 'No email';
   const [showModal, setShowModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [postToDelete, setPostToDelete] = useState<string | null>(null);
@@ -110,7 +116,7 @@ const UserPostsPage: React.FC = () => {
         
         <div className="mb-12">
           <h1 className="text-gray-900 text-4xl font-medium mb-2">{userName}</h1>
-          <p className="text-gray-600 text-sm">{userEmail} <span className='font-medium'>• {posts?.length || 0} Posts</span></p>
+          <p className="text-gray-600 text-sm">{userEmail} <span className='font-medium'>• {sortedPosts?.length || 0} Posts</span></p>
         </div>
 
         {createPostMutation.isError && (

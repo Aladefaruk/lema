@@ -14,3 +14,11 @@ export const useUsersCount = () => {
     queryFn: () => usersApi.getUsersCount(),
   });
 };
+
+export const useUser = (userId: string) => {
+  return useQuery({
+    queryKey: ['users', userId],
+    queryFn: () => usersApi.getUserById(userId),
+    enabled: !!userId,
+  });
+};
